@@ -11,9 +11,9 @@ echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 
-pacman -S grub efibootmgr os-prober ntfs-3g gvfs gvfs-mtp dhcpcd base-devel linux-lts-headers xdg-utils bash-completion reflector
+pacman -S grub efibootmgr os-prober ntfs-3g gvfs gvfs-mtp base-devel linux-headers amd-ucode dhcpcd xdg-utils vim bash-completion reflector
 
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable dhcpcd.service
@@ -24,4 +24,4 @@ useradd -m pepe
 usermod -aG wheel pepe
 echo "pepe ALL=(ALL) ALL" >> /etc/sudoers.d/pepe
 
-printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
+printf "\e[1;32mDone! Create password, type exit, umount -R /mnt and reboot.\e[0m"
