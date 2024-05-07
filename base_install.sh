@@ -10,9 +10,8 @@ echo "arch" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:password | chpasswd
 
-pacman -S grub efibootmgr dhcpcd base-devel linux-lts-headers xdg-utils gvfs gvfs-mtp bash-completion reflector os-prober ntfs-3g
+pacman -S grub efibootmgr os-prober ntfs-3g gvfs gvfs-mtp dhcpcd base-devel linux-lts-headers xdg-utils bash-completion reflector
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -22,7 +21,6 @@ systemctl enable reflector.timer
 systemctl enable fstrim.timer
 
 useradd -m pepe
-echo pepe:password | chpasswd
 usermod -aG wheel pepe
 echo "pepe ALL=(ALL) ALL" >> /etc/sudoers.d/pepe
 
